@@ -43,32 +43,19 @@ const SignupForm = () => {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      //   const response = await fetch(
-      //     "https://final-cljc.onrender.com/auth/register",
-      //     {
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         "Access-Control-Allow-Origin": "*",
-      //       },
-      //       body: JSON.stringify({
-      //         name: values.name,
-      //         email: values.email,
-      //         password: values.password,
-      //       }),
-      //     }
-      //   );
-      const response = await axios.post(
+      const response = await fetch(
         "https://final-cljc.onrender.com/auth/register",
         {
-          email: values.email,
-          password: values.password,
-        },
-        {
-          withCredentials: true, // if you need to send cookies along with your request
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            password: values.password,
+          }),
         }
       );
 
